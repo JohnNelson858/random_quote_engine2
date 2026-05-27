@@ -37,6 +37,24 @@
       border-radius: 4px;
     }
 
+/* The active class we will append to the element using JS */
+.fade-in {
+  animation: quoteFade 1.2s ease-in-out forwards;
+}
+
+/* The visual timeline for opacity and a subtle upward float */
+@keyframes quoteFade {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+    
   </style>
 </head>
 <body>
