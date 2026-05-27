@@ -6,6 +6,11 @@
 // Modes available: "console" (quiet logging) or "screen" (renders error box in UI)
 const ERROR_MODE = "screen"; 
 
+// Typography configuration rules
+const fonts = ["Qwitcher Grypen", "Tulpen One", "Shadows Into Light"];
+var rotating = 0; // Tracks which font index to apply next
+
+
 document.getElementById("fetchData").addEventListener("click", getRandomQuote);
 
 function getRandomQuote() {
