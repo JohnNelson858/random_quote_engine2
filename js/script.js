@@ -6,33 +6,37 @@
 // Modes available: "console" (quiet logging) or "screen" (renders error box in UI)
 const ERROR_MODE = "screen"; 
 
-document.getElementById("fetchData").addEventListener("click", () => {
-  
-  // Clear out any stale errors from a previous click attempt
+document.getElementById("fetchData").addEventListener("click", getRandomQuote);
+
+function getRandomQuote() {
   clearDisplayErrors();
 
   fetch("server.php")
     .then((res) => {
-      // CRITICAL: Fetch promises do NOT reject on HTTP errors (like 404 or 500).
-      // We must explicitly evaluate the response status flag.
       if (!res.ok) {
-        throw new Error(`HTTP Error Status: ${res.status} (${res.statusText || 'Unknown State'})`);
+        throw new Error(`HTTP Error Status: ${res.status}`);
       }
       return res.text();
     })
     .then((data) => {
-      // Route the raw payload safely into our UI container
+      // Dump raw unstyled text straight into the container
       document.getElementById("result").innerHTML = data;
     })
     .catch((err) => {
-      // Handle missing files, network dropout, or Backend failures
       handleRoutingError(err);
     });
+}
+
+// --- AUTOMATION ENGINE ---
+// 1. Run the function immediately when the DOM layout is loaded stable
+document.addEventListener("DOMContentLoaded", () => {
+    getRandomQuote(); 
+    
+    // 2. Set an infinite recurring timer loop (5000ms = 5 seconds)
+    setInterval(getRandomQuote, 5000);
 });
 
-/**
- * Dispatches errors to the chosen target based on configuration
- */
+
 function handleRoutingError(error) {
   const errorMessage = `⚠️ FETCH FAILURE DETAILS:\n-------------------------\nMessage: ${error.message}\nType: ${error.name}`;
   
