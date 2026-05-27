@@ -20,7 +20,19 @@ function getRandomQuote() {
     })
     .then((data) => {
       // Dump raw unstyled text straight into the container
-      document.getElementById("result").innerHTML = data;
+     
+      const quoteContainer = document.getElementById("result");
+      quoteContainer.innerHTML = data;
+      
+      //document.getElementById("result").innerHTML = data;
+      
+       // --- TRANSITION CONTROLLER ---
+      // Remove the class, force a browser reflow trick, then re-add the class
+      quoteContainer.classList.remove("fade-in");
+      void quoteContainer.offsetWidth; 
+      quoteContainer.classList.add("fade-in");
+
+      
     })
     .catch((err) => {
       handleRoutingError(err);
