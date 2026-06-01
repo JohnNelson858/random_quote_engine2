@@ -3,23 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Full-Stack Fetch Sandbox</title>
-  <link rel="stylesheet" href="css/error-display.css">  
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&family=Shadows+Into+Light&family=Tulpen+One&display=swap" rel="stylesheet">
-  
+  <title>Random Quote Engine</title>
+
+  <link rel="stylesheet" href="css/error-display.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&family=Shadows+Into+Light&family=Tulpen+One&display=swap" rel="stylesheet">
+
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
+      max-width: 800px;
+      margin: 60px auto;
       padding: 0 20px;
       text-align: center;
       background-color: #f9f9f9;
       color: #333;
     }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 1rem;
@@ -29,47 +37,62 @@
       border-radius: 4px;
       background-color: #fff;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #f0f0f0;
     }
-    /* output */
+
     #result {
-      margin-top: 30px;
-      font-size: 1.25rem;
+      margin-top: 40px;
+      font-size: 2rem;
       font-weight: 500;
-      padding: 15px;
-      border-radius: 4px;
+      padding: 25px;
+      border-radius: 8px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      line-height: 1.5;
     }
 
-/* The active class we will append to the element using JS */
-.fade-in {
-  animation: quoteFade 1.2s ease-in-out forwards;
-}
+    /* Animation trigger class */
+    .fade-in {
+      animation: quoteFade 1.2s ease-in-out forwards;
+    }
 
-/* The visual timeline for opacity and a subtle upward float */
-@keyframes quoteFade {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    /* Floating fade animation */
+    @keyframes quoteFade {
+      0% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
   </style>
 </head>
+
 <body>
 
-  <h1>Full-Stack Fetch Sandbox</h1>
-  <button id="fetchData">Fetch Data from Server</button>
-  
-  <div id="result">Click the button to ping the server...</div>
-  
+  <h1>Random Quote Engine</h1>
+
+  <button id="fetchData">Get Random Quote</button>
+
+  <div id="result">
+    Loading random quote...
+  </div>
+
   <div id="error-display"></div>
 
   <script src="js/script.js"></script>
+
 </body>
 </html>
