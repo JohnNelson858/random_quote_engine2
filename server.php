@@ -1,6 +1,14 @@
 <?php
+// Allow external GitHub Pages access (CORS)
+header("Access-Control-Allow-Origin: *");
+
+// Return plain text
 header("Content-Type: text/plain; charset=UTF-8");
-header("Cache-Control: no-cache, must-revalidate");
+
+// Prevent browser caching
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 $quotes = [
     "Be yourself; everyone else is already taken. — Oscar Wilde",
@@ -16,5 +24,6 @@ $quotes = [
 ];
 
 $randomIndex = array_rand($quotes);
+
 echo $quotes[$randomIndex];
 ?>
